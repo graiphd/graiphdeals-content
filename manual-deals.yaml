@@ -1,705 +1,721 @@
-# Seed catalog — real, currently-active promotions researched & page-verified
-# 2026-07-18. Each deal's price was confirmed on the merchant's own product
-# page at research time; prices drift, so re-verify on ingest refresh.
-# URLs are plain merchant links (no affiliate params yet — see CONTENT-GO-LIVE
-# Phase 4 for sub-ID wiring once network approvals land).
+# graiphdeals catalogue: running and ultrarunning gear only (ADR 0012).
+# Prices were read from each product page on the priceCheckedAt date and drift
+# after it. originalPriceCents is set only where the page shows a struck-through
+# price. URLs are plain product pages (merchant or authorised running retailer),
+# with no affiliate or tracking parameters.
 #
 # Imagery is DELIBERATELY placeholder: every `images:` entry points at
-# apps/web/public/deal-images/ph-*.svg and every card `artUrl:` at
-# apps/web/public/card-art/ph-card-*.svg. Product photos are the merchant's IP
-# and card art the issuer's, so real assets wait on network/issuer permission
-# (same gate as the affiliate params above) — do not hotlink merchant or issuer
-# images here. Paths are root-relative to the SPA origin; the SSR card
-# templates absolutize them against APP_BASE_URL.
+# apps/web/public/deal-images/ph-*.svg (root-relative to the SPA origin).
+# Product photos are the merchant's IP; do not hotlink them here.
 
 categories:
-  - id: c-style
-    name: Style & Apparel
-    tagline: fits & kicks
-  - id: c-tech
-    name: Tech & Audio
-    tagline: gear that beeps
-  - id: c-travel
-    name: Travel & Stays
-    tagline: go somewhere
-  - id: c-home
-    name: Home & Kitchen
-    tagline: nest upgrades
-  - id: c-run
-    name: Running & Recovery
-    tagline: go far, recover hard
+  - id: c-shoes
+    name: "Shoes"
+    tagline: "road, trail and ultra"
+  - id: c-fuel
+    name: "Fuel"
+    tagline: "gels, chews and drink mix"
+  - id: c-hydration
+    name: "Hydration"
+    tagline: "flasks, bottles and electrolytes"
+  - id: c-packs
+    name: "Packs & Vests"
+    tagline: "carry it all, bounce-free"
+  - id: c-apparel
+    name: "Apparel"
+    tagline: "shorts, socks and shells"
+  - id: c-recovery
+    name: "Recovery & Care"
+    tagline: "slides, compression and anti-chafe"
+  - id: c-lights
+    name: "Lights & Navigation"
+    tagline: "headlamps and watches"
+  - id: c-trail-kit
+    name: "Poles & Trail Kit"
+    tagline: "poles, gaiters and spikes"
 
 merchants:
-  # ── Style & Apparel ──────────────────────────────────────────────
-  - id: m-columbia
-    name: Columbia
-    blurb: Outdoor apparel & footwear
-    homepageUrl: https://www.columbia.com/
-    categoryIds: [c-style]
-    primaryCategoryId: c-style
-  - id: m-allbirds
-    name: Allbirds
-    blurb: Wool & tree-fibre shoes
-    homepageUrl: https://www.allbirds.com/
-    categoryIds: [c-style]
-    primaryCategoryId: c-style
-  - id: m-llbean
-    name: L.L.Bean
-    blurb: New England outdoor gear
-    homepageUrl: https://www.llbean.com/
-    categoryIds: [c-style]
-    primaryCategoryId: c-style
-  - id: m-eddiebauer
-    name: Eddie Bauer
-    blurb: Outerwear & down jackets
-    homepageUrl: https://www.eddiebauer.com/
-    categoryIds: [c-style]
-    primaryCategoryId: c-style
-  - id: m-merrell
-    name: Merrell
-    blurb: Hiking boots & trail shoes
-    homepageUrl: https://www.merrell.com/US/en/
-    categoryIds: [c-style]
-    primaryCategoryId: c-style
-  - id: m-toadco
-    name: Toad&Co
-    blurb: Sustainable lifestyle apparel
-    homepageUrl: https://www.toadandco.com/
-    categoryIds: [c-style]
-    primaryCategoryId: c-style
-
-  # ── Tech & Audio ─────────────────────────────────────────────────
-  - id: m-anker
-    name: Anker
-    blurb: Charging & power banks
-    homepageUrl: https://www.anker.com
-    categoryIds: [c-tech]
-    primaryCategoryId: c-tech
-  - id: m-bose
-    name: Bose
-    blurb: Premium audio & headphones
-    homepageUrl: https://www.bose.com
-    categoryIds: [c-tech]
-    primaryCategoryId: c-tech
-  - id: m-dell
-    name: Dell
-    blurb: Laptops, PCs & monitors
-    homepageUrl: https://www.dell.com
-    categoryIds: [c-tech]
-    primaryCategoryId: c-tech
-  - id: m-razer
-    name: Razer
-    blurb: Gaming peripherals
-    homepageUrl: https://www.razer.com
-    categoryIds: [c-tech]
-    primaryCategoryId: c-tech
-  - id: m-soundcore
-    name: soundcore
-    blurb: Anker's audio brand
-    homepageUrl: https://www.soundcore.com
-    categoryIds: [c-tech]
-    primaryCategoryId: c-tech
-
-  # ── Travel & Stays ───────────────────────────────────────────────
-  - id: m-away
-    name: Away
-    blurb: Premium luggage & bags
-    homepageUrl: https://www.awaytravel.com/
-    categoryIds: [c-travel]
-    primaryCategoryId: c-travel
-  - id: m-nomatic
-    name: Nomatic
-    blurb: Modular travel bags
-    homepageUrl: https://www.nomatic.com/
-    categoryIds: [c-travel]
-    primaryCategoryId: c-travel
-  - id: m-dagnedover
-    name: Dagne Dover
-    blurb: Functional designer bags
-    homepageUrl: https://www.dagnedover.com/
-    categoryIds: [c-travel]
-    primaryCategoryId: c-travel
-  - id: m-solgaard
-    name: Solgaard
-    blurb: Sustainable luggage
-    homepageUrl: https://solgaard.co/
-    categoryIds: [c-travel]
-    primaryCategoryId: c-travel
-  - id: m-calpak
-    name: CALPAK
-    blurb: Modern luggage & sets
-    homepageUrl: https://www.calpaktravel.com/
-    categoryIds: [c-travel]
-    primaryCategoryId: c-travel
-
-  # ── Home & Kitchen ───────────────────────────────────────────────
-  - id: m-dyson
-    name: Dyson
-    blurb: Cleaning & hair care
-    homepageUrl: https://www.dyson.com
-    categoryIds: [c-home]
-    primaryCategoryId: c-home
-  - id: m-vitamix
-    name: Vitamix
-    blurb: Professional-grade blenders
-    homepageUrl: https://www.vitamix.com
-    categoryIds: [c-home]
-    primaryCategoryId: c-home
-  - id: m-lecreuset
-    name: Le Creuset
-    blurb: Enameled cast iron
-    homepageUrl: https://www.lecreuset.com
-    categoryIds: [c-home]
-    primaryCategoryId: c-home
-  - id: m-ninja
-    name: Ninja
-    blurb: Kitchen appliances
-    homepageUrl: https://www.sharkninja.com
-    categoryIds: [c-home]
-    primaryCategoryId: c-home
-  - id: m-lodge
-    name: Lodge
-    blurb: USA-made cast iron
-    homepageUrl: https://www.lodgecastiron.com
-    categoryIds: [c-home]
-    primaryCategoryId: c-home
-  - id: m-allclad
-    name: All-Clad
-    blurb: Bonded stainless cookware
-    homepageUrl: https://www.all-clad.com
-    categoryIds: [c-home]
-    primaryCategoryId: c-home
-
-  # ── Running & Recovery ───────────────────────────────────────────
+  # Shoes
   - id: m-altra
-    name: Altra
-    blurb: Zero-drop trail & road shoes
+    name: "Altra"
+    blurb: "Zero-drop trail shoes with a wide toe box"
     homepageUrl: https://www.altrarunning.com/
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
-  - id: m-cep
-    name: CEP
-    blurb: Graduated compression socks
-    homepageUrl: https://ceprunning.com/
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
-  - id: m-2toms
-    name: 2Toms
-    blurb: Anti-chafe & blister prevention
-    homepageUrl: https://medi-dyne.com/collections/2toms
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
-  - id: m-oofos
-    name: OOFOS
-    blurb: Recovery footwear
-    homepageUrl: https://www.oofos.com/
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
-  - id: m-skratch
-    name: Skratch Labs
-    blurb: Sport drink mixes & fuel
-    homepageUrl: https://www.skratchlabs.com/
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
+    categoryIds: [c-shoes]
+    primaryCategoryId: c-shoes
+  - id: m-hoka
+    name: "HOKA"
+    blurb: "Max-cushion road and trail shoes"
+    homepageUrl: https://www.hoka.com/
+    categoryIds: [c-shoes, c-recovery]
+    primaryCategoryId: c-shoes
+  - id: m-brooks
+    name: "Brooks"
+    blurb: "Road and trail running shoes"
+    homepageUrl: https://www.brooksrunning.com/
+    categoryIds: [c-shoes]
+    primaryCategoryId: c-shoes
+  - id: m-saucony
+    name: "Saucony"
+    blurb: "Road racing and training shoes"
+    homepageUrl: https://www.saucony.com/
+    categoryIds: [c-shoes]
+    primaryCategoryId: c-shoes
+  - id: m-salomon
+    name: "Salomon"
+    blurb: "Trail shoes, race vests and mountain kit"
+    homepageUrl: https://www.salomon.com/
+    categoryIds: [c-shoes, c-packs, c-apparel]
+    primaryCategoryId: c-shoes
+  # Fuel
   - id: m-maurten
-    name: Maurten
-    blurb: Hydrogel sports fuel
+    name: "Maurten"
+    blurb: "Hydrogel carbohydrate fuel"
     homepageUrl: https://www.maurten.com/
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
+    categoryIds: [c-fuel]
+    primaryCategoryId: c-fuel
+  - id: m-skratch
+    name: "Skratch Labs"
+    blurb: "Drink mixes for fuel and hydration"
+    homepageUrl: https://www.skratchlabs.com/
+    categoryIds: [c-fuel, c-hydration]
+    primaryCategoryId: c-fuel
   - id: m-neversecond
-    name: Neversecond
-    blurb: C-series endurance fuel
+    name: "Neversecond"
+    blurb: "High-carb gels and drink mixes"
     homepageUrl: https://never2.com/
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
+    categoryIds: [c-fuel]
+    primaryCategoryId: c-fuel
+  - id: m-spring-energy
+    name: "Spring Energy"
+    blurb: "Real-food energy gels"
+    homepageUrl: https://myspringenergy.com/
+    categoryIds: [c-fuel]
+    primaryCategoryId: c-fuel
+  - id: m-gu
+    name: "GU Energy Labs"
+    blurb: "Energy gels and drink mixes"
+    homepageUrl: https://guenergy.com/
+    categoryIds: [c-fuel]
+    primaryCategoryId: c-fuel
+  - id: m-tailwind
+    name: "Tailwind Nutrition"
+    blurb: "All-in-one endurance drink mix"
+    homepageUrl: https://tailwindnutrition.com/
+    categoryIds: [c-fuel]
+    primaryCategoryId: c-fuel
+  # Hydration
   - id: m-precision
-    name: Precision Fuel & Hydration
-    blurb: Sodium & fueling by sweat test
+    name: "Precision Fuel & Hydration"
+    blurb: "Gels and electrolytes, dosed to you"
     homepageUrl: https://www.precisionhydration.com/
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
+    categoryIds: [c-fuel, c-hydration]
+    primaryCategoryId: c-hydration
   - id: m-hydrapak
-    name: HydraPak
-    blurb: Soft flasks & reservoirs
-    homepageUrl: https://hydrapak.com/
-    categoryIds: [c-run]
-    primaryCategoryId: c-run
+    name: "HydraPak"
+    blurb: "Soft flasks and reservoirs"
+    homepageUrl: https://www.hydrapak.com/
+    categoryIds: [c-hydration]
+    primaryCategoryId: c-hydration
+  - id: m-nathan
+    name: "Nathan"
+    blurb: "Handhelds and hydration race vests"
+    homepageUrl: https://nathansports.com/
+    categoryIds: [c-hydration, c-packs]
+    primaryCategoryId: c-hydration
+  - id: m-saltstick
+    name: "SaltStick"
+    blurb: "Electrolyte capsules and chews"
+    homepageUrl: https://www.saltstick.com/
+    categoryIds: [c-hydration]
+    primaryCategoryId: c-hydration
+  # Packs & Vests
+  - id: m-ultraspire
+    name: "UltrAspire"
+    blurb: "Bottle-friendly race vests"
+    homepageUrl: https://ultraspire.com/
+    categoryIds: [c-packs]
+    primaryCategoryId: c-packs
+  - id: m-ultimate-direction
+    name: "Ultimate Direction"
+    blurb: "Ultra vests and running packs"
+    homepageUrl: https://www.ultimatedirection.com/
+    categoryIds: [c-packs]
+    primaryCategoryId: c-packs
+  - id: m-camelbak
+    name: "CamelBak"
+    blurb: "Hydration vests and reservoirs"
+    homepageUrl: https://www.camelbak.com/
+    categoryIds: [c-packs]
+    primaryCategoryId: c-packs
+  # Apparel
+  - id: m-injinji
+    name: "Injinji"
+    blurb: "Toe socks for blister-free miles"
+    homepageUrl: https://www.injinji.com/
+    categoryIds: [c-apparel]
+    primaryCategoryId: c-apparel
+  - id: m-darn-tough
+    name: "Darn Tough"
+    blurb: "Merino running socks with a lifetime guarantee"
+    homepageUrl: https://darntough.com/
+    categoryIds: [c-apparel]
+    primaryCategoryId: c-apparel
+  - id: m-balega
+    name: "Balega"
+    blurb: "Cushioned running socks"
+    homepageUrl: https://balega.com/
+    categoryIds: [c-apparel]
+    primaryCategoryId: c-apparel
+  - id: m-janji
+    name: "Janji"
+    blurb: "Running shorts and tops"
+    homepageUrl: https://janji.com/
+    categoryIds: [c-apparel]
+    primaryCategoryId: c-apparel
+  # Recovery & Care
+  - id: m-oofos
+    name: "OOFOS"
+    blurb: "Recovery footwear"
+    homepageUrl: https://www.oofos.com/
+    categoryIds: [c-recovery]
+    primaryCategoryId: c-recovery
+  - id: m-cep
+    name: "CEP"
+    blurb: "Compression socks for running and recovery"
+    homepageUrl: https://ceprunning.com/
+    categoryIds: [c-recovery]
+    primaryCategoryId: c-recovery
+  - id: m-2toms
+    name: "2Toms"
+    blurb: "SportShield anti-chafe and blister care"
+    homepageUrl: https://medi-dyne.com/
+    categoryIds: [c-recovery]
+    primaryCategoryId: c-recovery
+  - id: m-body-glide
+    name: "Body Glide"
+    blurb: "Anti-chafe balms"
+    homepageUrl: https://www.bodyglide.com/
+    categoryIds: [c-recovery]
+    primaryCategoryId: c-recovery
+  - id: m-squirrels-nut-butter
+    name: "Squirrel's Nut Butter"
+    blurb: "Plant-based anti-chafe salve"
+    homepageUrl: https://www.squirrelsnutbutter.com/
+    categoryIds: [c-recovery]
+    primaryCategoryId: c-recovery
+  # Lights & Navigation
+  - id: m-petzl
+    name: "Petzl"
+    blurb: "Headlamps for night running"
+    homepageUrl: https://www.petzl.com/
+    categoryIds: [c-lights]
+    primaryCategoryId: c-lights
+  - id: m-coros
+    name: "COROS"
+    blurb: "Long-battery GPS sport watches"
+    homepageUrl: https://coros.com/
+    categoryIds: [c-lights]
+    primaryCategoryId: c-lights
+  - id: m-garmin
+    name: "Garmin"
+    blurb: "GPS running watches"
+    homepageUrl: https://www.garmin.com/
+    categoryIds: [c-lights]
+    primaryCategoryId: c-lights
+  # Poles & Trail Kit
+  - id: m-black-diamond
+    name: "Black Diamond"
+    blurb: "Trekking poles and headlamps"
+    homepageUrl: https://www.blackdiamondequipment.com/
+    categoryIds: [c-trail-kit, c-lights]
+    primaryCategoryId: c-trail-kit
+  - id: m-leki
+    name: "LEKI"
+    blurb: "Folding trail running poles"
+    homepageUrl: https://lekiusa.com/
+    categoryIds: [c-trail-kit]
+    primaryCategoryId: c-trail-kit
+  - id: m-kahtoola
+    name: "Kahtoola"
+    blurb: "Traction and gaiters for winter trails"
+    homepageUrl: https://kahtoola.com/
+    categoryIds: [c-trail-kit]
+    primaryCategoryId: c-trail-kit
 
 deals:
-  # Columbia — Summer Picks sale (ends Aug 5)
-  - id: d-columbia-1
-    merchantId: m-columbia
-    title: Men's Watertight II Jacket
-    priceCents: 7000
-    originalPriceCents: 10000
-    expires: ends Aug 5
-    expiresAt: 2026-08-05
-    url: https://www.columbia.com/p/mens-watertight-ii-jacket-1533891.html?color=479
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "Men's Watertight II Jacket" }
-      - { url: /deal-images/ph-2.svg, alt: "Men's Watertight II Jacket, alternate view" }
-  - id: d-columbia-2
-    merchantId: m-columbia
-    title: Women's Switchback IV Jacket
-    priceCents: 4900
-    originalPriceCents: 7000
-    expires: ends Aug 5
-    expiresAt: 2026-08-05
-    url: https://www.columbia.com/p/womens-switchback-iv-jacket-2086711.html?color=342
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "Women's Switchback IV Jacket" }
-      - { url: /deal-images/ph-3.svg, alt: "Women's Switchback IV Jacket, alternate view" }
-  # Allbirds
-  - id: d-allbirds-1
-    merchantId: m-allbirds
-    title: Women's Tree Dasher 2
-    priceCents: 9900
-    originalPriceCents: 14000
-    url: https://www.allbirds.com/products/womens-tree-dashers
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "Women's Tree Dasher 2" }
-      - { url: /deal-images/ph-4.svg, alt: "Women's Tree Dasher 2, alternate view" }
-  - id: d-allbirds-2
-    merchantId: m-allbirds
-    title: Men's Tree Dasher 2
-    priceCents: 9900
-    originalPriceCents: 14000
-    url: https://www.allbirds.com/products/mens-tree-dashers
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "Men's Tree Dasher 2" }
-      - { url: /deal-images/ph-1.svg, alt: "Men's Tree Dasher 2, alternate view" }
-  # L.L.Bean — Daily Markdowns
-  - id: d-llbean-1
-    merchantId: m-llbean
-    title: Women's Bean's Down Hooded Jacket, Colorblock
-    priceCents: 8499
-    originalPriceCents: 17000
-    url: https://www.llbean.com/llb/shop/126091?page=womens-beans-down-jacket-colorblock-womens-regular
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "Women's Bean's Down Hooded Jacket, Colorblock" }
-      - { url: /deal-images/ph-2.svg, alt: "Women's Bean's Down Hooded Jacket, Colorblock, alternate view" }
-  - id: d-llbean-2
-    merchantId: m-llbean
-    title: Men's Mountain Classic Anorak
-    priceCents: 4999
-    originalPriceCents: 6995
-    url: https://www.llbean.com/llb/shop/115663?page=mountain-classic-anorak
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "Men's Mountain Classic Anorak" }
-      - { url: /deal-images/ph-3.svg, alt: "Men's Mountain Classic Anorak, alternate view" }
-  # Eddie Bauer — clearance
-  - id: d-eddiebauer-1
-    merchantId: m-eddiebauer
-    title: Men's MicroTherm 2.0 Packable Down Jacket
-    priceCents: 12297
-    originalPriceCents: 24900
-    url: https://www.eddiebauer.com/products/mens-microtherm-2-down-jacket-33432402
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "Men's MicroTherm 2.0 Packable Down Jacket" }
-      - { url: /deal-images/ph-4.svg, alt: "Men's MicroTherm 2.0 Packable Down Jacket, alternate view" }
-  # Merrell — Summer Sale (ends Jul 21)
-  - id: d-merrell-1
-    merchantId: m-merrell
-    title: Men's Moab 3 Luxe Leather
-    priceCents: 11999
-    originalPriceCents: 16500
-    expires: ends Jul 21
-    expiresAt: 2026-07-21
-    url: https://www.merrell.com/US/en/moab-3-luxe-leather/60528M.html
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "Men's Moab 3 Luxe Leather" }
-      - { url: /deal-images/ph-1.svg, alt: "Men's Moab 3 Luxe Leather, alternate view" }
-  # Toad&Co — Summer Sale
-  - id: d-toadco-1
-    merchantId: m-toadco
-    title: Merino Heartfelt Hoodie, Dusty Cedar Stripe
-    priceCents: 14399
-    originalPriceCents: 24000
-    url: https://www.toadandco.com/products/merino-heartfelt-hoodie-dusty-cedar-stripe
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "Merino Heartfelt Hoodie, Dusty Cedar Stripe" }
-      - { url: /deal-images/ph-2.svg, alt: "Merino Heartfelt Hoodie, Dusty Cedar Stripe, alternate view" }
-  - id: d-toadco-2
-    merchantId: m-toadco
-    title: Earthworks Slim Pant, Epidote
-    priceCents: 6699
-    originalPriceCents: 9500
-    url: https://www.toadandco.com/products/earthworks-pant-epidote
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "Earthworks Slim Pant, Epidote" }
-      - { url: /deal-images/ph-3.svg, alt: "Earthworks Slim Pant, Epidote, alternate view" }
-
-  # Anker
-  - id: d-anker-1
-    merchantId: m-anker
-    title: Prime Power Bank (26K, 300W)
-    priceCents: 22999
-    originalPriceCents: 27999
-    url: https://www.anker.com/products/a110a-anker-prime-26k-300w-power-bank
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "Prime Power Bank (26K, 300W)" }
-      - { url: /deal-images/ph-4.svg, alt: "Prime Power Bank (26K, 300W), alternate view" }
-  - id: d-anker-2
-    merchantId: m-anker
-    title: Nano 45W Charger, Smart Display
-    priceCents: 3999
-    originalPriceCents: 5399
-    url: https://www.anker.com/products/a121d-45w-usb-c-fast-charger-foldable-plug-compact
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "Nano 45W Charger, Smart Display" }
-      - { url: /deal-images/ph-1.svg, alt: "Nano 45W Charger, Smart Display, alternate view" }
-  - id: d-anker-3
-    merchantId: m-anker
-    title: 543 USB-C Hub (6-in-1, Slim)
-    priceCents: 3999
-    originalPriceCents: 4999
-    url: https://www.anker.com/products/a8365
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "543 USB-C Hub (6-in-1, Slim)" }
-      - { url: /deal-images/ph-2.svg, alt: "543 USB-C Hub (6-in-1, Slim), alternate view" }
-  # Bose — Summer Sale
-  - id: d-bose-1
-    merchantId: m-bose
-    title: Ultra Open Earbuds
-    priceCents: 19900
-    originalPriceCents: 29900
-    expires: ends Jul 19
-    expiresAt: 2026-07-19
-    url: https://www.bose.com/p/earbuds/bose-ultra-open-earbuds/ULT-HEADPHONEOPN.html
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "Ultra Open Earbuds" }
-      - { url: /deal-images/ph-3.svg, alt: "Ultra Open Earbuds, alternate view" }
-  - id: d-bose-2
-    merchantId: m-bose
-    title: QuietComfort Ultra Headphones (2nd Gen)
-    priceCents: 39900
-    originalPriceCents: 44900
-    expires: ends Jul 19
-    expiresAt: 2026-07-19
-    url: https://www.bose.com/p/headphones/bose-quietcomfort-ultra-headphones-2nd-gen/QCUH2-HEADPHONEARN.html
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "QuietComfort Ultra Headphones (2nd Gen)" }
-      - { url: /deal-images/ph-4.svg, alt: "QuietComfort Ultra Headphones (2nd Gen), alternate view" }
-  - id: d-bose-3
-    merchantId: m-bose
-    title: SoundLink Max Portable Speaker
-    priceCents: 32900
-    originalPriceCents: 39900
-    expires: ends Jul 26
-    expiresAt: 2026-07-26
-    url: https://www.bose.com/p/speakers/bose-soundlink-max-portable-speaker/SLMAX-SPEAKERWIRELESS.html
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "SoundLink Max Portable Speaker" }
-      - { url: /deal-images/ph-1.svg, alt: "SoundLink Max Portable Speaker, alternate view" }
-  # Dell — clearance ("Estimated Value" originals; see PR notes)
-  - id: d-dell-1
-    merchantId: m-dell
-    title: Alienware 16X Aurora Gaming Laptop
-    priceCents: 179999
-    originalPriceCents: 272999
-    url: https://www.dell.com/en-us/shop/dell-laptops/alienware-16x-aurora-gaming-laptop/spd/alienware-aurora-ac16251-gaming-laptop/useac16251hbtshqmv
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "Alienware 16X Aurora Gaming Laptop" }
-      - { url: /deal-images/ph-2.svg, alt: "Alienware 16X Aurora Gaming Laptop, alternate view" }
-  - id: d-dell-2
-    merchantId: m-dell
-    title: Dell 14 Plus Laptop (Core Ultra)
-    priceCents: 79999
-    originalPriceCents: 134999
-    url: https://www.dell.com/en-us/shop/dell-laptops/dell-14-plus-laptop/spd/dell-db14250-laptop/usedb14250hbtshpjm
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "Dell 14 Plus Laptop (Core Ultra)" }
-      - { url: /deal-images/ph-3.svg, alt: "Dell 14 Plus Laptop (Core Ultra), alternate view" }
-  # Razer
-  - id: d-razer-1
-    merchantId: m-razer
-    title: Viper V3 Pro Wireless Mouse, White
-    priceCents: 11999
-    originalPriceCents: 15999
-    url: https://www.razer.com/gaming-mice/razer-viper-v3-pro/RZ01-05120200-R3U1
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "Viper V3 Pro Wireless Mouse, White" }
-      - { url: /deal-images/ph-4.svg, alt: "Viper V3 Pro Wireless Mouse, White, alternate view" }
-  - id: d-razer-2
-    merchantId: m-razer
-    title: BlackShark V2 Pro Wireless Headset
-    priceCents: 12999
-    originalPriceCents: 19999
-    url: https://www.razer.com/gaming-headsets/razer-blackshark-v2-pro/RZ04-04530100-R3U1
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "BlackShark V2 Pro Wireless Headset" }
-      - { url: /deal-images/ph-1.svg, alt: "BlackShark V2 Pro Wireless Headset, alternate view" }
-  # soundcore
-  - id: d-soundcore-1
-    merchantId: m-soundcore
-    title: Space One Pro NC Headphones
-    priceCents: 19999
-    originalPriceCents: 25999
-    url: https://www.soundcore.com/products/a3062-noise-cancelling-headphones
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "Space One Pro NC Headphones" }
-      - { url: /deal-images/ph-2.svg, alt: "Space One Pro NC Headphones, alternate view" }
-
-  # Away
-  - id: d-away-1
-    merchantId: m-away
-    title: Active Backpack 26L, Forest Green
-    priceCents: 10400
-    originalPriceCents: 13000
-    url: https://www.awaytravel.com/products/active-backpack-26l-forest-green
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "Active Backpack 26L, Forest Green" }
-      - { url: /deal-images/ph-3.svg, alt: "Active Backpack 26L, Forest Green, alternate view" }
-  - id: d-away-2
-    merchantId: m-away
-    title: Active Rolling Duffle 85L, Navy
-    priceCents: 33500
-    originalPriceCents: 39500
-    url: https://www.awaytravel.com/products/active-rolling-duffle-85l-navy-blue
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "Active Rolling Duffle 85L, Navy" }
-      - { url: /deal-images/ph-4.svg, alt: "Active Rolling Duffle 85L, Navy, alternate view" }
-  # Nomatic
-  - id: d-nomatic-1
-    merchantId: m-nomatic
-    title: Navigator Carry-On 37L
-    priceCents: 33749
-    originalPriceCents: 44999
-    url: https://www.nomatic.com/collections/sale/products/navigator-carry-on-37l
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "Navigator Carry-On 37L" }
-      - { url: /deal-images/ph-1.svg, alt: "Navigator Carry-On 37L, alternate view" }
-  # Dagne Dover
-  - id: d-dagnedover-1
-    merchantId: m-dagnedover
-    title: Landon Carryall, Medium
-    priceCents: 16500
-    originalPriceCents: 23500
-    url: https://www.dagnedover.com/collections/the-landon-carryall#CypressShearling-Medium
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "Landon Carryall, Medium" }
-      - { url: /deal-images/ph-2.svg, alt: "Landon Carryall, Medium, alternate view" }
-  # Solgaard
-  - id: d-solgaard-1
-    merchantId: m-solgaard
-    title: Carry-On Closet Original
-    priceCents: 27000
-    originalPriceCents: 32000
-    url: https://solgaard.co/products/carry-on-closet
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "Carry-On Closet Original" }
-      - { url: /deal-images/ph-3.svg, alt: "Carry-On Closet Original, alternate view" }
-  # CALPAK — sitewide sale through Jul 31
-  - id: d-calpak-1
-    merchantId: m-calpak
-    title: Hue Starter Bundle, 8-Piece Set
-    priceCents: 34680
-    originalPriceCents: 57800
-    expires: ends Jul 31
-    expiresAt: 2026-07-31
-    url: https://www.calpaktravel.com/products/hue-starter-bundle
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "Hue Starter Bundle, 8-Piece Set" }
-      - { url: /deal-images/ph-4.svg, alt: "Hue Starter Bundle, 8-Piece Set, alternate view" }
-
-  # Dyson — Floorcare Deals
-  - id: d-dyson-1
-    merchantId: m-dyson
-    title: V12 Detect Slim Cordless Vacuum
-    priceCents: 47999
-    originalPriceCents: 72999
-    url: https://www.dyson.com/vacuum-cleaners/cordless/v12/detect-slim-yellow
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "V12 Detect Slim Cordless Vacuum" }
-      - { url: /deal-images/ph-1.svg, alt: "V12 Detect Slim Cordless Vacuum, alternate view" }
-  - id: d-dyson-2
-    merchantId: m-dyson
-    title: WashG1 Wet Floor Cleaner
-    priceCents: 39999
-    originalPriceCents: 76999
-    url: https://www.dyson.com/floor-cleaners/wet/washg1/black-blue
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "WashG1 Wet Floor Cleaner" }
-      - { url: /deal-images/ph-2.svg, alt: "WashG1 Wet Floor Cleaner, alternate view" }
-  # Vitamix — July sale (ends Jul 20)
-  - id: d-vitamix-1
-    merchantId: m-vitamix
-    title: Ascent X5, Stainless Container
-    priceCents: 59995
-    originalPriceCents: 79995
-    expires: ends Jul 20
-    expiresAt: 2026-07-20
-    url: https://www.vitamix.com/us/en_us/products/ascent-x5-with-stainless-steel-container
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "Ascent X5, Stainless Container" }
-      - { url: /deal-images/ph-3.svg, alt: "Ascent X5, Stainless Container, alternate view" }
-  - id: d-vitamix-2
-    merchantId: m-vitamix
-    title: Propel 750 Classic Bundle
-    priceCents: 49995
-    originalPriceCents: 69995
-    expires: ends Jul 20
-    expiresAt: 2026-07-20
-    url: https://www.vitamix.com/us/en_us/products/propel-750-classic-bundle
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "Propel 750 Classic Bundle" }
-      - { url: /deal-images/ph-4.svg, alt: "Propel 750 Classic Bundle, alternate view" }
-  # Le Creuset — Specials
-  - id: d-lecreuset-1
-    merchantId: m-lecreuset
-    title: Signature Round Deep Oven, 6.5 qt
-    priceCents: 28999
-    originalPriceCents: 46000
-    url: https://www.lecreuset.com/signature-round-deep-oven-6-5-qt/211950US.html
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "Signature Round Deep Oven, 6.5 qt" }
-      - { url: /deal-images/ph-1.svg, alt: "Signature Round Deep Oven, 6.5 qt, alternate view" }
-  # Ninja
-  - id: d-ninja-1
-    merchantId: m-ninja
-    title: DoubleStack XL 2-Basket Air Fryer, 10 qt
-    priceCents: 20999
-    originalPriceCents: 24999
-    url: https://www.sharkninja.com/ninja-doublestack-xl-2-basket-10-qt-air-fryer/SL401.html
-    images:
-      - { url: /deal-images/ph-1.svg, alt: "DoubleStack XL 2-Basket Air Fryer, 10 qt" }
-      - { url: /deal-images/ph-2.svg, alt: "DoubleStack XL 2-Basket Air Fryer, 10 qt, alternate view" }
-  # Lodge — On Sale collection
-  - id: d-lodge-1
-    merchantId: m-lodge
-    title: USA Enamel Dutch Oven, 4.5 qt
-    priceCents: 16495
-    originalPriceCents: 24995
-    url: https://www.lodgecastiron.com/products/usa-enamel-cast-iron-dutch-oven
-    images:
-      - { url: /deal-images/ph-2.svg, alt: "USA Enamel Dutch Oven, 4.5 qt" }
-      - { url: /deal-images/ph-3.svg, alt: "USA Enamel Dutch Oven, 4.5 qt, alternate view" }
-  # All-Clad — Hot Deals
-  - id: d-allclad-1
-    merchantId: m-allclad
-    title: D3 Everyday 10-Piece Cookware Set
-    priceCents: 74999
-    originalPriceCents: 107999
-    url: https://www.all-clad.com/d3-stainless-everyday-10-piece-pots-and-pans-cookware-set.html
-    images:
-      - { url: /deal-images/ph-3.svg, alt: "D3 Everyday 10-Piece Cookware Set" }
-      - { url: /deal-images/ph-4.svg, alt: "D3 Everyday 10-Piece Cookware Set, alternate view" }
-  - id: d-allclad-2
-    merchantId: m-allclad
-    title: D3 Everyday Skillet with Lid, 10.5"
-    priceCents: 10999
-    originalPriceCents: 16999
-    url: https://www.all-clad.com/d3-stainless-everyday-3-ply-bonded-cookware-skillet-with-lid-10-5-in.html
-    images:
-      - { url: /deal-images/ph-4.svg, alt: "D3 Everyday Skillet with Lid, 10.5\"" }
-      - { url: /deal-images/ph-1.svg, alt: "D3 Everyday Skillet with Lid, 10.5\", alternate view" }
-
-  # Running & Recovery — ids referenced by the foot-prep article
-  # ({{deal:...}} placeholders); page-verified 2026-07-20.
-  - id: d-altra-race-shoe
+  # Shoes
+  - id: d-altra-timp-5
     merchantId: m-altra
-    title: Men's Timp 5
+    title: "Men's Timp 5 Trail Running Shoe"
     priceCents: 12400
     originalPriceCents: 15500
+    priceCheckedAt: 2026-10-17
     url: https://www.altrarunning.com/en-us/products/mens-timp-5-al0a85pe
+    categories: [c-shoes]
     images:
-      - { url: /deal-images/ph-1.svg, alt: "Men's Timp 5" }
-      - { url: /deal-images/ph-2.svg, alt: "Men's Timp 5, alternate view" }
-  - id: d-compression-socks
-    merchantId: m-cep
-    title: Core Run Tall Compression Socks 5.0
-    priceCents: 6000
-    coupon: POTM-JULY26
-    expires: code ends Jul 31
-    expiresAt: 2026-07-31
-    url: https://ceprunning.com/products/core-run-tall-compression-socks-5-0-men
+      - { url: /deal-images/ph-1.svg, alt: "Altra Timp 5 trail shoe" }
+  - id: d-altra-olympus-6
+    merchantId: m-altra
+    title: "Men's Olympus 6 Trail Running Shoe"
+    priceCents: 14800
+    originalPriceCents: 18500
+    priceCheckedAt: 2026-10-17
+    url: https://www.altrarunning.com/en-us/products/mens-olympus-6-al0a85nj
+    categories: [c-shoes]
     images:
-      - { url: /deal-images/ph-2.svg, alt: "Core Run Tall Compression Socks 5.0" }
-      - { url: /deal-images/ph-3.svg, alt: "Core Run Tall Compression Socks 5.0, alternate view" }
-  - id: d-sports-shield
-    merchantId: m-2toms
-    title: 2Toms SportShield 1.5oz Roll-On
-    priceCents: 1499
-    url: https://medi-dyne.com/products/2toms-sportshield-1-5-oz-roll-on
+      - { url: /deal-images/ph-2.svg, alt: "Altra Olympus 6 trail shoe" }
+  - id: d-hoka-speedgoat-6
+    merchantId: m-hoka
+    title: "Men's Speedgoat 6 Trail Running Shoe"
+    priceCents: 10995
+    originalPriceCents: 15495
+    priceCheckedAt: 2026-10-17
+    url: https://www.roadrunnersports.com/product/45057/mens-hoka-speedgoat-6
+    categories: [c-shoes]
     images:
-      - { url: /deal-images/ph-3.svg, alt: "2Toms SportShield 1.5oz Roll-On" }
-      - { url: /deal-images/ph-4.svg, alt: "2Toms SportShield 1.5oz Roll-On, alternate view" }
-  - id: d-oofos-recovery-slides
-    merchantId: m-oofos
-    title: Men's OOahh Slide Sandal
-    priceCents: 5995
-    url: https://www.oofos.com/products/mens-sandal-ooahh-slide-black
+      - { url: /deal-images/ph-3.svg, alt: "HOKA Speedgoat 6 trail shoe" }
+  - id: d-brooks-cascadia-19
+    merchantId: m-brooks
+    title: "Men's Cascadia 19 Trail Running Shoe"
+    priceCents: 11995
+    priceCheckedAt: 2026-10-17
+    url: https://www.roadrunnersports.com/product/48306/mens-brooks-cascadia-19
+    categories: [c-shoes]
     images:
-      - { url: /deal-images/ph-4.svg, alt: "Men's OOahh Slide Sandal" }
-      - { url: /deal-images/ph-1.svg, alt: "Men's OOahh Slide Sandal, alternate view" }
-
-  # Running & Recovery — ids referenced by the altitude carb-ceiling article
-  # ({{deal:...}} placeholders); page-verified 2026-08-25.
-  - id: d-skratch-super-high-carb
-    merchantId: m-skratch
-    title: Super High-Carb Sport Drink Mix, 3200-Calorie Bag
-    priceCents: 4195
-    url: https://www.skratchlabs.com/products/super-high-carb-sport-drink-mix
+      - { url: /deal-images/ph-4.svg, alt: "Brooks Cascadia 19 trail shoe" }
+  - id: d-saucony-endorphin-speed-5
+    merchantId: m-saucony
+    title: "Endorphin Speed 5 Road Running Shoe"
+    priceCents: 12995
+    originalPriceCents: 17500
+    priceCheckedAt: 2026-10-17
+    url: https://www.saucony.com/en/endorphin-speed-5/
+    categories: [c-shoes]
     images:
-      - { url: /deal-images/ph-1.svg, alt: "Super High-Carb Sport Drink Mix bag" }
-      - { url: /deal-images/ph-2.svg, alt: "Super High-Carb Sport Drink Mix bag, alternate view" }
+      - { url: /deal-images/ph-1.svg, alt: "Saucony Endorphin Speed 5 road shoe" }
+  - id: d-salomon-speedcross-6
+    merchantId: m-salomon
+    title: "Men's Speedcross 6 Trail Running Shoe"
+    priceCents: 14995
+    priceCheckedAt: 2026-10-17
+    url: https://www.roadrunnersports.com/product/42546/mens-salomon-speedcross-6
+    categories: [c-shoes]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "Salomon Speedcross 6 trail shoe" }
+  # Fuel
   - id: d-maurten-drink-mix-320
     merchantId: m-maurten
-    title: Drink Mix 320, Box of 14
+    title: "Drink Mix 320, Box of 14"
     priceCents: 5100
+    priceCheckedAt: 2026-10-17
     url: https://www.maurten.com/products/drink-mix-320-box-us
+    categories: [c-fuel]
     images:
-      - { url: /deal-images/ph-2.svg, alt: "Maurten Drink Mix 320 box" }
-      - { url: /deal-images/ph-3.svg, alt: "Maurten Drink Mix 320 box, alternate view" }
+      - { url: /deal-images/ph-3.svg, alt: "Maurten Drink Mix 320 box" }
+  - id: d-maurten-gel-100
+    merchantId: m-maurten
+    title: "Gel 100, Box of 12"
+    priceCents: 4500
+    priceCheckedAt: 2026-10-17
+    url: https://www.maurten.com/products/gel-100-box-us
+    categories: [c-fuel]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "Maurten Gel 100 box" }
+  - id: d-skratch-super-high-carb
+    merchantId: m-skratch
+    title: "Super High-Carb Sport Drink Mix, 3200-Calorie Bag"
+    priceCents: 4195
+    priceCheckedAt: 2026-10-17
+    url: https://www.skratchlabs.com/products/super-high-carb-sport-drink-mix
+    categories: [c-fuel]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Skratch Super High-Carb drink mix bag" }
   - id: d-neversecond-c90
     merchantId: m-neversecond
-    title: C90 High Carb Drink Mix, 8 Sachets
+    title: "C90 High Carb Drink Mix, 8 Sachets"
     priceCents: 3800
+    priceCheckedAt: 2026-10-17
     url: https://never2.com/products/c90-high-carb-drink
+    categories: [c-fuel]
     images:
-      - { url: /deal-images/ph-3.svg, alt: "Neversecond C90 High Carb Drink Mix sachets" }
-      - { url: /deal-images/ph-4.svg, alt: "Neversecond C90 High Carb Drink Mix sachets, alternate view" }
-  - id: d-precision-electrolyte-capsules
+      - { url: /deal-images/ph-2.svg, alt: "Neversecond C90 drink mix sachets" }
+  - id: d-spring-energy-canaberry
+    merchantId: m-spring-energy
+    title: "Canaberry Energy Gel, 10 Pack"
+    priceCents: 4150
+    priceCheckedAt: 2026-10-17
+    url: https://myspringenergy.com/products/canaberry
+    categories: [c-fuel]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "Spring Energy Canaberry gel" }
+  - id: d-gu-roctane-gel
+    merchantId: m-gu
+    title: "Roctane Energy Gel, Box of 24"
+    priceCents: 7200
+    priceCheckedAt: 2026-10-17
+    url: https://guenergy.com/products/roctane-energy-gel
+    categories: [c-fuel]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "GU Roctane energy gel box" }
+  - id: d-tailwind-endurance-fuel
+    merchantId: m-tailwind
+    title: "Endurance Fuel Drink Mix, 50 Servings"
+    priceCents: 4299
+    priceCheckedAt: 2026-10-17
+    url: https://tailwindnutrition.com/products/endurance-fuel
+    categories: [c-fuel]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Tailwind Endurance Fuel bag" }
+  - id: d-precision-pf-30-gel
     merchantId: m-precision
-    title: Electrolyte Capsules, 15-Pack (250mg sodium)
-    priceCents: 999
-    url: https://www.precisionhydration.com/us/en/products/electrolyte-salt-capsules-for-athletes/
+    title: "PF 30 Energy Gel, 4 Gels"
+    priceCents: 1249
+    priceCheckedAt: 2026-10-17
+    url: https://www.precisionhydration.com/us/en/products/pf-30-gel/
+    categories: [c-fuel]
     images:
-      - { url: /deal-images/ph-4.svg, alt: "Precision Fuel & Hydration Electrolyte Capsules" }
-      - { url: /deal-images/ph-1.svg, alt: "Precision Fuel & Hydration Electrolyte Capsules, alternate view" }
+      - { url: /deal-images/ph-2.svg, alt: "Precision PF 30 energy gels" }
+  # Hydration
   - id: d-hydrapak-ultraflask-speed
     merchantId: m-hydrapak
-    title: UltraFlask Speed 500ml
-    priceCents: 2200
+    title: "UltraFlask Speed 500ml Soft Flask"
+    priceCents: 1760
+    originalPriceCents: 2200
+    priceCheckedAt: 2026-10-17
     url: https://www.hydrapak.com/products/ultraflask-speed
+    categories: [c-hydration]
     images:
-      - { url: /deal-images/ph-1.svg, alt: "HydraPak UltraFlask Speed 500ml" }
-      - { url: /deal-images/ph-2.svg, alt: "HydraPak UltraFlask Speed 500ml, alternate view" }
-
+      - { url: /deal-images/ph-3.svg, alt: "HydraPak UltraFlask Speed 500ml" }
+  - id: d-hydrapak-skyflask-speed
+    merchantId: m-hydrapak
+    title: "SkyFlask Speed 500ml Soft Flask"
+    priceCents: 3300
+    priceCheckedAt: 2026-10-17
+    url: https://www.hydrapak.com/products/skyflask%E2%84%A2-speed-500ml-1
+    categories: [c-hydration]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "HydraPak SkyFlask Speed 500ml" }
+  - id: d-precision-electrolyte-capsules
+    merchantId: m-precision
+    title: "Electrolyte Capsules, 15 Capsules (250mg sodium)"
+    priceCents: 999
+    priceCheckedAt: 2026-10-17
+    url: https://www.precisionhydration.com/us/en/products/electrolyte-salt-capsules-for-athletes/
+    categories: [c-hydration]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Precision electrolyte capsules" }
+  - id: d-precision-ph-1500-tablets
+    merchantId: m-precision
+    title: "PH 1500 Electrolyte Tablets, Tube of 10"
+    priceCents: 1199
+    priceCheckedAt: 2026-10-17
+    url: https://www.precisionhydration.com/us/en/products/ph-1500-low-calorie-electrolyte-supplement/
+    categories: [c-hydration]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "Precision PH 1500 electrolyte tablets" }
+  - id: d-nathan-exoshot-2
+    merchantId: m-nathan
+    title: "ExoShot 2.0 Handheld 14oz"
+    priceCents: 4400
+    priceCheckedAt: 2026-10-17
+    url: https://nathansports.com/products/exoshot-2-0-handheld-14oz
+    categories: [c-hydration]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "Nathan ExoShot 2.0 handheld flask" }
+  - id: d-saltstick-caps-100
+    merchantId: m-saltstick
+    title: "SaltStick Caps, 100 Servings"
+    priceCents: 2499
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/SaltStick_Caps_100-Servings/descpage-SSC100.html
+    categories: [c-hydration]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "SaltStick electrolyte caps bottle" }
+  - id: d-skratch-hydration-mix
+    merchantId: m-skratch
+    title: "Hydration Sport Drink Mix, 20-Serving Bag"
+    priceCents: 2395
+    priceCheckedAt: 2026-10-17
+    url: https://www.skratchlabs.com/products/hydration-sport-drink-mix
+    categories: [c-hydration]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Skratch Hydration Sport Drink Mix bag" }
+  # Packs & Vests
+  - id: d-salomon-adv-skin-12
+    merchantId: m-salomon
+    title: "ADV Skin 12 Set Running Vest"
+    priceCents: 16495
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/Salomon_Adv_Skin_12_Set_Pack/descpage-SAD12RF.html
+    categories: [c-packs]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "Salomon ADV Skin 12 running vest" }
+  - id: d-nathan-pinnacle-12l
+    merchantId: m-nathan
+    title: "Pinnacle 12 Liter Hydration Race Vest"
+    priceCents: 11000
+    originalPriceCents: 22000
+    priceCheckedAt: 2026-10-17
+    url: https://nathansports.com/products/pinnacle-12-liter-hydration-race-vest
+    categories: [c-packs]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "Nathan Pinnacle 12L race vest" }
+  - id: d-ultraspire-momentum-3
+    merchantId: m-ultraspire
+    title: "Momentum 3.0 Race Vest"
+    priceCents: 14995
+    priceCheckedAt: 2026-10-17
+    url: https://ultraspire.com/products/momentum-3-0-race-vest/
+    categories: [c-packs]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "UltrAspire Momentum 3.0 race vest" }
+  - id: d-ultimate-direction-ultra-vest
+    merchantId: m-ultimate-direction
+    title: "Ultra Vest Running Vest"
+    priceCents: 17495
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/Ultimate_Direction_Ultra_Vest/descpage-UDUVU6.html
+    categories: [c-packs]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Ultimate Direction Ultra Vest" }
+  - id: d-camelbak-trail-run-vest
+    merchantId: m-camelbak
+    title: "Trail Run Vest"
+    priceCents: 10995
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/Camelbak_Trail_Run_Vest/descpage-CATRV2.html
+    categories: [c-packs]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "CamelBak Trail Run Vest" }
+  # Apparel
+  - id: d-injinji-trail-midweight-crew
+    merchantId: m-injinji
+    title: "Trail Midweight Crew Toe Socks"
+    priceCents: 1800
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/Injinji_Trail_Midweight_Crew_Toesocks_Denim/descpage-INTMCD.html
+    categories: [c-apparel]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "Injinji Trail Midweight Crew toe socks" }
+  - id: d-darn-tough-run-quarter
+    merchantId: m-darn-tough
+    title: "Men's Run Quarter Cushioned Ultra-Lightweight Running Socks"
+    priceCents: 2100
+    priceCheckedAt: 2026-10-17
+    url: https://darntough.com/products/mens-merino-wool-run-quarter-cushioned-ultra-lightweight-running-socks
+    categories: [c-apparel]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "Darn Tough Run Quarter running socks" }
+  - id: d-balega-hidden-comfort
+    merchantId: m-balega
+    title: "Hidden Comfort No Show Running Socks"
+    priceCents: 1700
+    priceCheckedAt: 2026-10-17
+    url: https://balega.com/products/hidden-comfort-no-show-tab
+    categories: [c-apparel]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Balega Hidden Comfort no-show socks" }
+  - id: d-janji-afo-middle-short
+    merchantId: m-janji
+    title: "Men's 5\" AFO Middle Short"
+    priceCents: 7200
+    priceCheckedAt: 2026-10-17
+    url: https://janji.com/products/ms-5-afo-middle-short
+    categories: [c-apparel]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "Janji AFO Middle running short" }
+  - id: d-salomon-sense-aero-short
+    merchantId: m-salomon
+    title: "Men's Sense Aero Stow 5\" Split Short"
+    priceCents: 7500
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/Salomon_Mens_Sense_Aero_Stow_5_Split_Short/descpage-SM3AS5S.html
+    categories: [c-apparel]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "Salomon Sense Aero Stow split short" }
+  - id: d-salomon-bonatti-waterproof-jacket
+    merchantId: m-salomon
+    title: "Men's Bonatti Waterproof Jacket"
+    priceCents: 20000
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/Salomon_Mens_Bonatti_Waterproof_Jacket/descpage-SMBWPJD.html
+    categories: [c-apparel]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "Salomon Bonatti waterproof running jacket" }
+  # Recovery & Care
+  - id: d-oofos-ooahh-slide
+    merchantId: m-oofos
+    title: "Men's OOahh Slide Sandal"
+    priceCents: 5995
+    priceCheckedAt: 2026-10-17
+    url: https://www.oofos.com/products/mens-sandal-ooahh-slide-black
+    categories: [c-recovery]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "OOFOS OOahh recovery slide" }
+  - id: d-hoka-ora-recovery-slide-3
+    merchantId: m-hoka
+    title: "Ora Recovery Slide 3"
+    priceCents: 4195
+    originalPriceCents: 5995
+    priceCheckedAt: 2026-10-17
+    url: https://www.roadrunnersports.com/product/43285/hoka-ora-recovery-slide-3
+    categories: [c-recovery]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "HOKA Ora Recovery Slide 3" }
+  - id: d-cep-run-compression-socks
+    merchantId: m-cep
+    title: "Men's Core Run Tall Compression Socks 5.0"
+    priceCents: 6000
+    priceCheckedAt: 2026-10-17
+    url: https://ceprunning.com/products/core-run-tall-compression-socks-5-0-men
+    categories: [c-recovery]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "CEP Core Run tall compression socks" }
+  - id: d-2toms-sportshield
+    merchantId: m-2toms
+    title: "SportShield Anti-Chafe Roll-On, 1.5oz"
+    priceCents: 1499
+    priceCheckedAt: 2026-10-17
+    url: https://medi-dyne.com/products/2toms-sportshield-1-5-oz-roll-on
+    categories: [c-recovery]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "2Toms SportShield roll-on" }
+  - id: d-body-glide-anti-chafe
+    merchantId: m-body-glide
+    title: "Body Glide Anti-Chafe Balm, 1.5oz"
+    priceCents: 1099
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/Body_Glide_Anti_Chafe_15oz/descpage-BG15.html
+    categories: [c-recovery]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Body Glide anti-chafe stick" }
+  - id: d-squirrels-nut-butter-stick
+    merchantId: m-squirrels-nut-butter
+    title: "Anti-Chafe & Skin Repair Stick, Original 1.7oz"
+    priceCents: 1499
+    priceCheckedAt: 2026-10-17
+    url: https://www.squirrelsnutbutter.com/products/anti-chafe-stick
+    categories: [c-recovery]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "Squirrel's Nut Butter anti-chafe stick" }
+  # Lights & Navigation
+  - id: d-petzl-nao-rl
+    merchantId: m-petzl
+    title: "NAO RL Rechargeable Running Headlamp"
+    priceCents: 19995
+    priceCheckedAt: 2026-10-17
+    url: https://www.petzl.com/US/en/Sport/Headlamps/NAO-RL
+    categories: [c-lights]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "Petzl NAO RL headlamp" }
+  - id: d-petzl-swift-rl
+    merchantId: m-petzl
+    title: "SWIFT RL Rechargeable Headlamp"
+    priceCents: 13495
+    priceCheckedAt: 2026-10-17
+    url: https://www.petzl.com/US/en/Sport/Headlamps/SWIFT-RL
+    categories: [c-lights]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "Petzl SWIFT RL headlamp" }
+  - id: d-bd-distance-1500-headlamp
+    merchantId: m-black-diamond
+    title: "Distance 1500 Headlamp"
+    priceCents: 24995
+    priceCheckedAt: 2026-10-17
+    url: https://www.blackdiamondequipment.com/products/distance-1500-headlamp
+    categories: [c-lights]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Black Diamond Distance 1500 headlamp" }
+  - id: d-coros-pace-4
+    merchantId: m-coros
+    title: "PACE 4 GPS Sport Watch"
+    priceCents: 24900
+    priceCheckedAt: 2026-10-17
+    url: https://coros.com/us/buy/pace4
+    categories: [c-lights]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "COROS PACE 4 GPS watch" }
+  - id: d-coros-apex-4
+    merchantId: m-coros
+    title: "APEX 4 GPS Watch, 46mm"
+    priceCents: 47900
+    priceCheckedAt: 2026-10-17
+    url: https://coros.com/us/buy/apex4
+    categories: [c-lights]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "COROS APEX 4 GPS watch" }
+  - id: d-garmin-forerunner-970
+    merchantId: m-garmin
+    title: "Forerunner 970 GPS Running Watch"
+    priceCents: 74999
+    priceCheckedAt: 2026-10-17
+    url: https://www.runningwarehouse.com/Garmin_Forerunner_970_GPS_Watch/descpage-GFR970.html
+    categories: [c-lights]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "Garmin Forerunner 970 GPS watch" }
+  # Poles & Trail Kit
+  - id: d-bd-distance-carbon-z
+    merchantId: m-black-diamond
+    title: "Distance Carbon Z Poles"
+    priceCents: 21995
+    priceCheckedAt: 2026-10-17
+    url: https://www.blackdiamondequipment.com/products/distance-carbon-z-poles
+    categories: [c-trail-kit]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Black Diamond Distance Carbon Z folding poles" }
+  - id: d-leki-ultratrail-fx-one-superlite
+    merchantId: m-leki
+    title: "Ultratrail FX.One Superlite Poles (Past Season)"
+    priceCents: 18495
+    originalPriceCents: 24995
+    priceCheckedAt: 2026-10-17
+    url: https://lekiusa.com/products/ultratrail-fx-one-superlite_leki-usa_trail-running-poles_all-season
+    categories: [c-trail-kit]
+    images:
+      - { url: /deal-images/ph-2.svg, alt: "LEKI Ultratrail FX.One Superlite poles" }
+  - id: d-kahtoola-nanospikes
+    merchantId: m-kahtoola
+    title: "NANOspikes Footwear Traction"
+    priceCents: 6995
+    priceCheckedAt: 2026-10-17
+    url: https://kahtoola.com/traction/nanospikes-footwear-traction/
+    categories: [c-trail-kit]
+    images:
+      - { url: /deal-images/ph-3.svg, alt: "Kahtoola NANOspikes traction" }
+  - id: d-kahtoola-exospikes
+    merchantId: m-kahtoola
+    title: "EXOspikes Footwear Traction"
+    priceCents: 7995
+    priceCheckedAt: 2026-10-17
+    url: https://kahtoola.com/traction/exospikes-footwear-traction/
+    categories: [c-trail-kit]
+    images:
+      - { url: /deal-images/ph-4.svg, alt: "Kahtoola EXOspikes traction" }
+  - id: d-kahtoola-instagaiter
+    merchantId: m-kahtoola
+    title: "INSTAgaiter Stretch-Woven Gaiter"
+    priceCents: 5495
+    priceCheckedAt: 2026-10-17
+    url: https://kahtoola.com/gaiters/instagaiter/
+    categories: [c-trail-kit]
+    images:
+      - { url: /deal-images/ph-1.svg, alt: "Kahtoola INSTAgaiter trail gaiter" }
 
 related:
-  # style: outerwear neighbors & footwear neighbors
-  - [m-columbia, m-eddiebauer]
-  - [m-columbia, m-llbean]
-  - [m-merrell, m-columbia]
-  - [m-allbirds, m-merrell]
-  - [m-toadco, m-llbean]
-  # tech: audio cluster & gaming/PC cluster
-  - [m-anker, m-soundcore]
-  - [m-bose, m-soundcore]
-  - [m-dell, m-razer]
-  - [m-anker, m-dell]
-  # travel: luggage neighbors
-  - [m-away, m-calpak]
-  - [m-nomatic, m-solgaard]
-  - [m-away, m-dagnedover]
-  # home: cast iron cluster & appliance cluster
-  - [m-lecreuset, m-lodge]
-  - [m-allclad, m-lecreuset]
-  - [m-ninja, m-vitamix]
-  - [m-dyson, m-ninja]
-  # running: shoe/recovery cluster
-  - [m-altra, m-oofos]
-  - [m-altra, m-cep]
-  - [m-2toms, m-cep]
+  - [m-hoka, m-altra]
+  - [m-brooks, m-saucony]
+  - [m-salomon, m-ultimate-direction]
+  - [m-maurten, m-neversecond]
+  - [m-skratch, m-tailwind]
+  - [m-gu, m-spring-energy]
+  - [m-precision, m-saltstick]
+  - [m-hydrapak, m-nathan]
+  - [m-ultraspire, m-camelbak]
+  - [m-injinji, m-darn-tough]
+  - [m-balega, m-janji]
+  - [m-oofos, m-hoka]
+  - [m-2toms, m-body-glide]
+  - [m-squirrels-nut-butter, m-cep]
+  - [m-petzl, m-black-diamond]
+  - [m-coros, m-garmin]
+  - [m-leki, m-kahtoola]

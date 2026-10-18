@@ -6,19 +6,19 @@ meta_description: 'A 100-mile finisher''s foot protocol for ultras past 12 hours
   shoe mileage windows, the 48-hour compression rule, mid-race swaps, lube by weather
   - and the races that taught each rule.'
 status: published
-category: c-run
+category: c-recovery
 deals:
-  - d-altra-race-shoe
-  - d-compression-socks
-  - d-sports-shield
-  - d-oofos-recovery-slides
+  - d-altra-timp-5
+  - d-cep-run-compression-socks
+  - d-2toms-sportshield
+  - d-oofos-ooahh-slide
 ---
 
 Before anything else: **this is what works for me, in Altras.** I've tried other shoes with no luck. Zero-drop and a wide toe box change the whole hot-spot map — if you're not in Altras, treat everything below as a starting point, not a protocol. Several friends have switched to Topo and it works for them. It didn't work for me, and I can't tell you anything useful about running Topos at hour 14 because I haven't done it. I'm telling you they exist, not recommending them.
 
 This is n=1: multiple 100-mile finishes, never a 200. And to be blunt about the money: I recommend Altras because they're the only thing that's worked on my feet, and I earn a commission if you buy them through the links here. Both halves of that sentence belong together.
 
-{{deal:d-altra-race-shoe}}
+{{deal:d-altra-timp-5}}
 
 ## Why 12 hours is the line
 
@@ -62,7 +62,7 @@ Fresh socks at every shoe change. It always feels great.
 
 The requirement is a spec, not a brand: **compression, zero cotton.** I've used many different types, and any brand that meets the spec works. Some compression socks have a bit more padding, and that's nice — but the extra cost doesn't justify it. On price: I started with expensive compression socks, then tried no-name brands and got the same performance. The difference is durability — the cheap ones usually last one or two races. Others will tell you otherwise. I use compression socks in every long race, and if you buy a pair through the link here, I earn a commission.
 
-{{deal:d-compression-socks}}
+{{deal:d-cep-run-compression-socks}}
 
 ## Skin
 
@@ -74,13 +74,13 @@ The wet protocol has a specific origin, and it isn't mine. At the Chattanooga 10
 
 What else I tested: Body Glide works but needs reapplication more often. Squirrel's Nut Butter I tried as a trial version — nothing bad happened, but to me it was more like a lotion, and the extra cost made it redundant next to what I already had. So it gets a mention, not a link. Sports Shield is what's actually on my feet on race day, and I earn a commission if you buy it here.
 
-{{deal:d-sports-shield}}
+{{deal:d-2toms-sportshield}}
 
 ## Before and after
 
 Recovery slides — Oofos — before and after the event. Same disclosure, same reason: they're what I actually wear, and the link pays me a commission.
 
-{{deal:d-oofos-recovery-slides}}
+{{deal:d-oofos-ooahh-slide}}
 
 ## What I still don't know
 

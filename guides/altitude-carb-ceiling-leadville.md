@@ -6,7 +6,7 @@ meta_description: '85 g of carbs an hour on a gut trained for 65: a Leadville DN
   post-mortem — the transporter math, the eight-hour heart-rate ceiling, and how
   to find your own tested number.'
 status: published
-category: c-run
+category: c-fuel
 deals:
   - d-skratch-super-high-carb
   - d-maurten-drink-mix-320
